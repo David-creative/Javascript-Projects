@@ -1,0 +1,65 @@
+<!-- 
+CSC 6303
+* Name: David Ayriyan
+* Module 4 Project
+* Language: HTML, CSS, JavaScript
+* IDE/Compiler: Visual Studio Code
+* File Name: Project04.html
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Checker</title>
+    <script>
+        function isPrime() {
+            // Get the value of the number entered by the user from the input field with id 'nbr'
+            var number = document.getElementById("nbr").value;
+
+            // Check if the number is less than 2 or greater than 9999
+            if (number < 2 || number > 9999) {
+                document.getElementById("outputAnswer").innerHTML = "Please enter a number between 2 and 9999.";
+                document.getElementById("outputAnswer").style.color = "black";
+                return;
+            }
+            
+            // If the number is 2 or 3, it is a prime number
+            if (number <= 3) {
+                document.getElementById("outputAnswer").innerHTML = "This number is prime!";
+                document.getElementById("outputAnswer").style.color = "red";
+                return;
+            }
+
+            // If the number is divisible by 2 or 3, it is not a prime number
+            if (number % 2 == 0 || number % 3 == 0) {
+                document.getElementById("outputAnswer").innerHTML = "This number is not prime!";
+                document.getElementById("outputAnswer").style.color = "blue";
+                return;
+            }
+
+            // Loop to check if the number is divisible by any number from 5 to sqrt(number)
+            // increment i by 6 each time
+            for (let i = 5; i*i <= number; i+=6) {
+                if (number % i == 0 || number % (i + 2) == 0) {
+                    document.getElementById("outputAnswer").innerHTML = "This number is not prime!";
+                    document.getElementById("outputAnswer").style.color = "blue";
+                    return;
+                }
+            }
+
+            // If the number passes all checks, it is a prime number
+            document.getElementById("outputAnswer").innerHTML = "The number is prime!";
+            document.getElementById("outputAnswer").style.color = "red";
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1 style="color:red">Prime Checker</h1>
+        <label>Enter a number from 2 to 9999:</label>
+        <input type="number" id="nbr"> <br> <br>
+        <button onclick="isPrime()">Submit</button>
+    <p id="outputAnswer">I'm waiting...</p>
+</body>
+</html>
